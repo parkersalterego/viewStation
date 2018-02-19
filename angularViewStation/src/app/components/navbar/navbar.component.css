@@ -1,0 +1,44 @@
+.nav {
+  height: 100px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 100px repeat(8, 1fr) repeat(3, 125px);
+  background-color: rgba(0,0,0,.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo {
+  grid-column: 1/2;
+  background-color: purple;
+}
+
+.nav-buttons {
+  grid-column: 10/13;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.list {
+  grid-column: 1/2;
+  background-color: blue;
+}
+
+.recomended {
+  grid-column: 2/3;
+  background-color: green;
+}
+
+.profile {
+  grid-column: 3/4;
+  background-color: red;
+}
+
+.nav-spacer {
+  height: 100px;
+  width: 100%;
+}
+
+
