@@ -23,17 +23,29 @@
 
 .list {
   grid-column: 1/2;
-  background-color: blue;
+  background-color: #000;
+  display: grid;
+  border-right: 1px solid rgba(255, 255, 255, .5);
 }
 
 .recomended {
   grid-column: 2/3;
-  background-color: green;
+  background-color:  #000;
+  display: grid;
+  border-right: 1px solid rgba(255, 255, 255, .5);
 }
 
 .profile {
   grid-column: 3/4;
-  background-color: red;
+  background-color: #000;
+  display: grid;
+}
+
+.nav-list-p {
+  font-size: 20px;
+  color: #fff;
+  align-self: center;
+  justify-self: center;
 }
 
 .nav-spacer {
