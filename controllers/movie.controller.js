@@ -18,7 +18,11 @@ router.get('/', (req, res, next) => {
 router.put('/:_id', (req, res, next) => {
   let id = req.params._id;
   let movie = new Movie({
-// fill in 
+    title: req.body.title,
+    director: req.body.director,
+    actors: req.body.actors,
+    releaseYear: req.body.releaseYear,
+    rating: req.body.rating
   });
 
   Movie.updateMovie(id, movie, {}, (err, movie) => {
@@ -45,7 +49,11 @@ router.get('/:_id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   let movie = new Movie({
-    // fill in contents - key: value
+    title: req.body.title,
+    director: req.body.director,
+    actors: req.body.actors,
+    releaseYear: req.body.releaseYear,
+    rating: req.body.rating
   });
 
   Movie.addMovie(movie, (err, movie) => {
