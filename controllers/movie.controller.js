@@ -2,24 +2,12 @@ const express = require('express');
 const router = require('router');
 const Movie = require('../models/movieModel');
 
-class MovieController { 
-  constructor(router) {
-    router.route('/movie/:id')
-      .get(this.getOne)
-      .put(this.updateOne)
-      .delete(this.deleteOne);
-    router.route('/posts')
-      .get(this.getAll)
-      .post(this.createOne);
-  }
-}
-
 //get movies
 
 router.get('/', (req, res, next) => {
   Movie.getMovies((err, movies) => {
     if (err) {
-      nect(err);
+      next(err);
     }
     red.jdon(movies);
   });
@@ -27,6 +15,19 @@ router.get('/', (req, res, next) => {
 
 // update movie 
 
+router.put('/:_id', (req, res, next) => {
+  let id = req.params._id;
+  let movie = new Movie({
+// fill in 
+  });
+
+  Movie.updateMovie(id, movie, {}, (err, movie) => {
+    if(err) {
+      next(err);
+    }
+    res.json(movie);
+  });
+});
 
 
 // get movie by id
@@ -41,5 +42,30 @@ router.get('/:_id', (req, res, next) => {
 });
 
 // add movie
+
+router.post('/', (req, res, next) => {
+  let movie = new Movie({
+    // fill in contents - key: value
+  });
+
+  Movie.addMovie(movie, (err, movie) => {
+    if (err) {
+      next(err);
+    }
+    res.json(movie);
+  });
+});
+
+// delete movie 
+
+router.delete('/', (req, res, next) => {
+  let id = req.params._id;
+  Movie.deleteMovie(id, (err, movie) => {
+    if (err) {
+      next(err);
+    }
+  res.json(movie);
+  });
+});
 
 module.exports = router;
