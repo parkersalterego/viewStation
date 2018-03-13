@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     if (err) {
       next(err);
     }
-    red.jdon(movies);
+    red.json(movies);
   });
 });
 
