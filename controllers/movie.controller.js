@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('router');
+const router = express.Router();
 const Movie = require('../models/movieModel');
 
 //get movies
@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     if (err) {
       next(err);
     }
-    red.json(movies);
+    res.json(movies);
   });
 });
 
@@ -66,7 +66,7 @@ router.post('/', (req, res, next) => {
 
 // delete movie 
 
-router.delete('/', (req, res, next) => {
+router.delete('/:_id', (req, res, next) => {
   let id = req.params._id;
   Movie.deleteMovie(id, (err, movie) => {
     if (err) {

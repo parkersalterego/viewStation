@@ -14,6 +14,7 @@ app.set("host", process.env.HOST || "0.0.0.0");
 app.set("port", process.env.PORT || 3000);
 
 // routes 
+const movies = require('./controllers/movie.controller');
 
 // morgan logger
 app.use(logger('dev'));
@@ -41,6 +42,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // set route prefixes
+app.use('/movies', movies);
 
 // index route
 app.get('/', (req, res, next) => {
