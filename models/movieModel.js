@@ -1,7 +1,26 @@
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
-
+  title : {
+    required: true,
+    type: String
+  },
+  director: {
+    required: true,
+    type: String
+  },
+  actors: {
+    required: true,
+    type: String
+  },
+  releaseYear: {
+    required: true,
+    type: String
+  },
+  rating: {
+    required: true,
+    type: Number
+  }
 });
 
 const Movie = module.exports = mongoose.model('Movie', MovieSchema);
@@ -21,7 +40,11 @@ module.exports.getMovieById = (id, callback) => {
 module.exports.updateMovie = (id, movie, options, callback) => {
   let query = {_id: id};
   let update = {
-
+    title: movie.title,
+    director: movie.director,
+    actors: movie.actors,
+    releaseYear: movie.releaseYear,
+    rating: movie.rating
   };
 
   Movie.findOneAndUpdate(query, update, options, callback);
