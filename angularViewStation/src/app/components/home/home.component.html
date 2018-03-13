@@ -1,3 +1,11 @@
-<div class="header">
+<div class="movies" *ngFor="let movie of movies">
+  <ul>
+    <li>{{movie.title}}</li>
+    <li>{{movie.director}}</li>
+    <li>{{movie.actors}}</li>
+    <li>{{movie.releaseYear}}</li>
+    <li>{{movie.rating}}</li>
+  </ul>
+
 
 </div>
