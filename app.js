@@ -25,7 +25,11 @@ app.use(cors());
 // body parser middleware
 app.use(bodyParser());
 
-//passport middleware
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 
 //static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,7 +41,7 @@ mongoose.connection.on('connected', (req, res, next) => {
   console.log('Connected to database ' + process.env.DATABASE);
 });
 
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on('error', (err, next) => {
   console.log('Error connecting to database: ' + err);
 });
 
@@ -57,7 +61,7 @@ app.use((req, res, next) => {
 });
 
 //dev error handler -- prints stacktrace
-if(app.get('env') === 'developmenmt') {
+if(app.get('env') === 'development') {
   app.use((err, req, res, next) => {
     res.status(err.code || 500)
       .json({
