@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class MovieService {
-  baseRoute = `${environment.api}/movies`;
+  baseRoute = `${environment.api}/api/movies`;
 
   constructor(private http: Http) { }
 
