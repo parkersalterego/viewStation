@@ -14,9 +14,8 @@ class ShowController {
 
     async getOne(req, res, next) {
         try{
-            Show.getShowById(req.params._id, (err, show) => {
-                res.json(show);
-            });
+            await Show.findById(req.params._id)
+                .then(show => res.json(show));
         } catch (err) {
             next(err);
         }
@@ -24,12 +23,8 @@ class ShowController {
 
     async updateOne(req, res, next) {
         try {
-            let id = req.params._id;
-            let show = new Show(req.body);
-
-            Show.updateMovie(id, movie, {}, (err, show) => {
-                res.json(show);
-            });
+           await Show.findOneAndUpdate(req.params._id, req.body, {new: true})
+            .then(show => res.json(show));
         } catch(err) {
             next(err);
         }
@@ -37,11 +32,8 @@ class ShowController {
 
     async deleteOne(req, res, next) {
         try {   
-            let id = req.params._id;
-
-            Show.deleteShow(id, (err, movie) => {
-                res.json(show);
-            });
+            Show.remove({_id: req.params._id})
+                .then(show => res.json(show));
         } catch(err) {
             next(err);
         }
@@ -49,9 +41,8 @@ class ShowController {
 
     async getAll(req, res, next) {
         try {
-            Show.getShows((err, shows) => {
-                res.json(shows);
-            });
+            await Show.find()
+                .then(shows => res.json(shows));
         } catch (err) {
             next (err);
         }
@@ -59,17 +50,12 @@ class ShowController {
 
     async insertOne(req, res, next) {
         try {
-            let show = new Show(req.body);
-
-            Show.addShow(show, (err, show) => {
-                res.json(show);
-            });
+            await Show.create(new Show(req.body))
+                .then(show => res.json(show));
         } catch(err) {
             next(err);
         }
     }
-
-
 
 }
 

@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
 const ShowSchema = new mongoose.Schema({
-    title: {
+    showTitle: {
         required: true,
         unique: true,
         type: String
     },
     seasons: [
         {
-            title: {
-                required: true,
-                unique: true,
-                type: String
+            seasonNumber: {
+            required: true,
+            unique: true,
+            type: Number
             },
             episodes: [
                 {
-                    title: {
+                    episodeTitle: {
                         required: true,
                         unique: true,
                         type: String
@@ -51,38 +51,6 @@ const ShowSchema = new mongoose.Schema({
     ]
 });
 
+
+
 const Show = module.exports = mongoose.model('Show', ShowSchema);
-
-// create
-
-module.exports.addShow = (show, callback) => {
-    Show.create(show, callback);
-}
-
-// read all
-
-module.exports.getShows = (callback, limit) => {
-    Show.find(callback).limit(limit);
-}
-
-// read 1
-
-module.exports.getShowById = (id, callback) => {
-    Show.findById(id, callback);
-}
-
-// update
-
-module.exports.updateShow = (id, show, options, callback) => {
-    let query = {_id: id};
-
-    Show.findOneAndUpdate(query, show, options, callback);
-    
-}
-
-// delete
-
-module.exports.deleteShow = (id, callback) => {
-    let query = {_id: id};
-    Show.remove(query, callback);
-}

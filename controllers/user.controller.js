@@ -10,6 +10,8 @@ class UserController {
       .post(this.authenticateUser);
     router.route('/users/register')
       .post(this.registerUser);
+    router.route('/users/login')
+      .post(this.login);
   }
 
   // authenticate user
@@ -56,7 +58,7 @@ class UserController {
     } catch (err) {
       next(err);
     }
-  }
+  };
 
   // register user
   async registerUser(req, res, next) {
@@ -83,7 +85,29 @@ class UserController {
     } catch (err) {
       next(err);
     }
-  }
+  };
+
+  async login(req, res, next) {
+    try {
+      let loginData = {
+        email: req.body.email,
+        password: req.body.password
+      };
+
+      User.getUserByEmail(loginData.email, (err, user) =>{
+        if (user) {
+          
+        } else {
+          res.json({
+            success: false,
+            msg: 'Incorrect email or password'
+          });
+        }
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
 
 module.exports = UserController;
